@@ -427,6 +427,28 @@
   .how-cta{ padding: 10px 14px; border-radius: 12px; }
   .how-steps{ grid-template-columns: 1fr; }
 }
+    /* RGB Animated Text */
+.rgb-text{
+  background: linear-gradient(90deg,
+    #ff3b3b, #ff2fd2, #6a5cff, #25d6ff, #35f0a4, #ffe14d, #ff3b3b
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: rgbMove 4s linear infinite;
+}
+
+@keyframes rgbMove{
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Hareket azaltma tercihinde animasyonu kapat */
+@media (prefers-reduced-motion: reduce){
+  .rgb-text{ animation: none; }
+}
   </style>
 </head>
 
@@ -462,16 +484,16 @@
 
   <main class="container" id="home">
     <section class="hero">
-      <div class="badge">Nostalgia Meets Innovation</div>
+      <div class="badge">Stabil bir Growtopia deneyimi.</div>
 
       <h1 class="title">
         <span class="accent">Grow</span>Para
       </h1>
 
-      <p class="subtitle">
-        GrowPara’ya hoş geldin. Güncellemeler, etkinlikler ve kurulum adımları Discord üzerinden paylaşılır.
-        Bu site sadece tanıtım ve yönlendirme amaçlıdır.
-      </p>
+<p class="subtitle rgb-text">
+  GrowPara’ya hoş geldin. Güncellemeler, etkinlikler ve kurulum adımları Discord üzerinden paylaşılır.
+  Bu site sadece tanıtım ve yönlendirme amaçlıdır.
+</p>
 
       <div class="cta">
         <a class="btn primary" href="https://discord.gg/ccXERYbUWU" target="_blank" rel="noreferrer">Discord’a Katıl →</a>
