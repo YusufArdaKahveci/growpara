@@ -468,6 +468,22 @@
 @media (max-width: 980px){
   .balance-pill{ display:none; } /* mobilde kalabalık olmasın diye */
 }
+.bal-btn{
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.80);
+  font-weight: 900;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: transform .15s ease, border-color .15s ease, color .15s ease;
+}
+.bal-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(53,240,164,.22);
+  color: rgba(255,255,255,.92);
+}
   </style>
 </head>
 
@@ -498,9 +514,7 @@
 <div class="right">
   <div class="tiny">Official GrowPara</div>
 
-  <div class="balance-pill" title="Şimdilik demo bakiye">
-    💳 Bakiye: <strong id="balanceAmount">0</strong> <span class="bal-unit">₺</span>
-  </div>
+  <a class="bal-btn" href="./balance.html">💳 Bakiye</a>
 </div>
   </header>
 
