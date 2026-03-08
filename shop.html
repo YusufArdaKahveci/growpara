@@ -325,6 +325,78 @@
       .menu.open{ display:flex; }
       .burger{ display:inline-flex; }
     }
+/* Shop Categories (Filter Bar) */
+.catbar{
+  margin-top: 14px;
+  display:flex;
+  align-items:center;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.08);
+}
+
+.cat-left{
+  display:flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items:center;
+}
+
+.cat-btn{
+  appearance:none;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.16);
+  color: rgba(255,255,255,.78);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, color .15s ease, background .15s ease;
+}
+.cat-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(53,240,164,.22);
+  color: rgba(255,255,255,.92);
+}
+.cat-btn.active{
+  background: rgba(53,240,164,.12);
+  border-color: rgba(53,240,164,.28);
+  color: rgba(53,240,164,.95);
+}
+
+.cat-search{
+  display:flex;
+  align-items:center;
+  gap: 10px;
+  margin-left:auto;
+}
+.cat-search input{
+  width: min(320px, 70vw);
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.10);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.86);
+  outline: none;
+}
+.cat-search input:focus{
+  border-color: rgba(53,240,164,.26);
+}
+
+.no-results{
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,.08);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.70);
+  text-align:center;
+}
   </style>
 </head>
 
@@ -389,7 +461,21 @@
           <span class="chip">Güncel Liste</span>
         </div>
       </div>
+<div class="catbar">
+  <div class="cat-left">
+    <button class="cat-btn active" data-filter="all">Tümü</button>
+    <button class="cat-btn" data-filter="packs">Paketler</button>
+    <button class="cat-btn" data-filter="ranks">VIP / Rütbe</button>
+    <button class="cat-btn" data-filter="currency">WL / DL</button>
+    <button class="cat-btn" data-filter="support">Destek</button>
+  </div>
 
+  <div class="cat-search">
+    <input id="shopSearch" type="search" placeholder="Ürün ara..." />
+  </div>
+</div>
+
+<div class="no-results" id="noResults" hidden>Sonuç bulunamadı.</div>
       <div class="products">
         <article class="product">
           <div class="product-head">
@@ -486,6 +572,45 @@
     const menu = document.getElementById("menu");
     burger.addEventListener("click", () => menu.classList.toggle("open"));
     menu.querySelectorAll("a").forEach(a => a.addEventListener("click", () => menu.classList.remove("open")));
+    // --- Shop Filter ---
+const catButtons = document.querySelectorAll(".cat-btn");
+const products = document.querySelectorAll(".product");
+const search = document.getElementById("shopSearch");
+const noResults = document.getElementById("noResults");
+
+let activeFilter = "all";
+
+function applyFilter(){
+  const q = (search?.value || "").trim().toLowerCase();
+  let shown = 0;
+
+  products.forEach(p => {
+    const cat = p.dataset.cat || "";
+    const title = (p.querySelector(".p-title")?.textContent || "").toLowerCase();
+    const desc  = (p.querySelector(".p-desc")?.textContent || "").toLowerCase();
+
+    const catOk = activeFilter === "all" || cat === activeFilter;
+    const qOk = !q || title.includes(q) || desc.includes(q);
+
+    const ok = catOk && qOk;
+    p.style.display = ok ? "" : "none";
+    if(ok) shown++;
+  });
+
+  if(noResults) noResults.hidden = shown !== 0;
+}
+
+catButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    catButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    activeFilter = btn.dataset.filter || "all";
+    applyFilter();
+  });
+});
+
+search?.addEventListener("input", applyFilter);
+applyFilter();
   </script>
 </body>
 </html>
