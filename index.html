@@ -362,6 +362,70 @@
 @media (max-width: 980px){
   .kv .btn { width: 100%; text-align: center; }
 }
+    /* How to Play (modern) */
+.how-head{
+  display:flex;
+  align-items:flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.how-head h2{ margin:0 0 8px; }
+.how-cta{ white-space: nowrap; }
+
+.how-steps{
+  display:grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.how-step{
+  display:flex;
+  gap: 12px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .18s ease, border-color .18s ease;
+}
+.how-step:hover{
+  transform: translateY(-1px);
+  border-color: rgba(53,240,164,.22);
+}
+
+.step-num{
+  width: 34px; height: 34px;
+  border-radius: 12px;
+  display:grid; place-items:center;
+  font-weight: 900;
+  color: rgba(53,240,164,.95);
+  background: rgba(53,240,164,.10);
+  border: 1px solid rgba(53,240,164,.22);
+  flex: 0 0 auto;
+}
+
+.step-title{ font-weight: 900; }
+.step-desc{ margin-top: 4px; line-height: 1.55; }
+
+.how-foot{
+  display:flex;
+  gap: 10px;
+  align-items:center;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.how-link{
+  color: rgba(53,240,164,.92);
+  font-weight: 900;
+}
+
+@media (max-width: 980px){
+  .how-head{ flex-direction: column; align-items: stretch; }
+  .how-cta{ width: 100%; text-align:center; }
+  .how-steps{ grid-template-columns: 1fr; }
+}
   </style>
 </head>
 
@@ -438,23 +502,59 @@
     </section>
 
     <div class="grid">
-      <section class="panel" id="how">
-        <h2>How to Play</h2>
-        <p class="muted">
-          Bağlantı bilgilerini ve kurulum dosyalarını güvenlik için public paylaşmıyoruz.
-          En güncel kurulum adımları Discord’da.
-        </p>
-        <ol class="steps">
-          <li>Discord’a katıl</li>
-          <li>#how-to-play / #download kanalındaki yönergeleri takip et</li>
-          <li>Gerekli dosyaları indirip yerleştir</li>
-          <li>Oyunu aç ve giriş yap</li>
-        </ol>
-        <div style="margin-top:12px">
-          <a class="btn primary" href="https://discord.gg/ccXERYbUWU" target="_blank" rel="noreferrer">Kurulum için Discord →</a>
-        </div>
-      </section>
+<section class="panel how" id="how">
+  <div class="how-head">
+    <div>
+      <h2>How to Play</h2>
+      <p class="muted">
+        Güvenlik için bağlantı/kurulum dosyalarını public paylaşmıyoruz. En güncel kurulum adımları Discord’da.
+      </p>
+    </div>
 
+    <a class="btn primary how-cta" href="https://discord.gg/ccXERYbUWU" target="_blank" rel="noreferrer">
+      Discord’dan Kurulum Al →
+    </a>
+  </div>
+
+  <div class="how-steps">
+    <div class="how-step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Discord’a Katıl</div>
+        <div class="step-desc muted">Duyurular, güncellemeler ve destek kanalları burada.</div>
+      </div>
+    </div>
+
+    <div class="how-step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">#how-to-play / #download</div>
+        <div class="step-desc muted">Kurulum dosyaları ve en güncel yönergeler bu kanallarda.</div>
+      </div>
+    </div>
+
+    <div class="how-step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Dosyaları Yerleştir</div>
+        <div class="step-desc muted">Paylaşılan adımları takip ederek gerekli dosyaları doğru konuma koy.</div>
+      </div>
+    </div>
+
+    <div class="how-step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <div class="step-title">Oyunu Aç ve Giriş Yap</div>
+        <div class="step-desc muted">Takıldığın yerde Discord destek kanalından yardım al.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="how-foot">
+    <span class="muted">Sorun mu var?</span>
+    <a class="how-link" href="https://discord.gg/ccXERYbUWU" target="_blank" rel="noreferrer">Discord destek →</a>
+  </div>
+</section>
       <section class="panel" id="shop">
         <h2>Quick Info</h2>
         <div class="kvs">
