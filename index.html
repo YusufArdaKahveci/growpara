@@ -266,18 +266,23 @@
     }
     .muted{ color: var(--muted); }
 
-    .steps{
-      margin: 0; padding-left: 18px;
-      line-height: 1.9;
-      color: var(--muted);
-    }
+.steps{
+  margin: 0 0 14px; /* ALT BOŞLUK */
+  padding-left: 18px;
+  line-height: 1.9;
+  color: var(--muted);
+}
     .kvs{ display:grid; gap: 10px; }
-    .kv{
-      padding: 14px 14px;
-      border-radius: 14px;
-      background: rgba(0,0,0,.18);
-      border: 1px solid rgba(255,255,255,.08);
-    }
+.kv{
+  padding: 16px 16px;
+  border-radius: 14px;
+  background: rgba(0,0,0,.18);
+  border: 1px solid rgba(255,255,255,.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* İÇERİKLER ARASI MESAFE */
+}
     .kv b{ color: rgba(255,255,255,.88); }
     .kv code{
       display:inline-block;
